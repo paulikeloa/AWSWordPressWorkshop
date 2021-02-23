@@ -73,7 +73,7 @@ Easy or manual?
 ### Easy method
 Launch EC2 Instance → t2.micro, Bitnami AMI
 1. Go to the EC2 Console
-![EC2 Console](images/AWS-EC2-1.png)
+![EC2 Console](img/AWS-EC2-1.png)
 2. 
 3. 
 4. 
