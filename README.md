@@ -1,30 +1,32 @@
 
 # Wordpress Migration Workshop
-In this workshop, you will learn how to migrate a typical wordpress website to AWS.
+In this workshop, you will learn how to migrate a typical wordpress website to AWS. This workshop expects that you have some level of AWS proficency as it is not an introduction to AWS services.
+
 
 ## Intro to AWS
 
 Amazon Web Services (AWS) is the world’s most comprehensive and broadly adopted cloud platform, offering over 200 fully featured services from data centers globally. Millions of customers—including the fastest-growing startups, largest enterprises, and leading government agencies—are using AWS to lower costs, become more agile, and innovate faster.
 
-## What is migration?
 
-A migration is when you move an application and data from one location to a new location.  
+## What is a migration?
+
+A migration is when you move an workload or application and data from one environment to a another. 
 
 Migrations to AWS include moving any workload from an on-premises environment, hosting facility, or other public cloud. AWS is working with thousands of organizations to migrate workloads such as applications, websites, databases, storage, physical or virtual servers, or entire data centers.
 
-## Intro to EC2
 
-Amazon Elastic Compute Cloud (Amazon EC2) is a web service that provides secure, resizable compute capacity in the cloud. It is designed to make web-scale cloud computing easier for developers. Amazon EC2’s simple web service interface allows you to obtain and configure capacity with minimal friction. It provides you with complete control of your computing resources and lets you run on Amazon’s proven computing environment.
+## Introduction to EC2
+
+***Amazon Elastic Compute Cloud (Amazon EC2)*** is a web service that provides secure, resizable compute capacity in the cloud. It is designed to make web-scale cloud computing easier for developers. Amazon EC2’s simple web service interface allows you to obtain and configure capacity with minimal friction. It provides you with complete control of your computing resources and lets you run on Amazon’s proven computing environment.
 
 ### Core Services
-1. VPC
-Amazon Virtual Private Cloud (Amazon VPC) enables you to launch AWS resources into a virtual network that you've defined. This virtual network closely resembles a traditional network that you'd operate in your own data center, with the benefits of using the scalable infrastructure of AWS. 
 
-Amazon VPC concepts
+1. VPC
+**Amazon Virtual Private Cloud (Amazon VPC)** enables you to launch AWS resources into a virtual network that you've defined. This virtual network closely resembles a traditional network that you'd operate in your own data center, with the benefits of using the scalable infrastructure of AWS. 
 
 Amazon VPC is the networking layer for Amazon EC2. 
 
-The following are the key concepts for VPCs:
+>The following are the key concepts for VPCs:
 
     Virtual private cloud (VPC) — A virtual network dedicated to your AWS account.
 
@@ -39,23 +41,30 @@ The following are the key concepts for VPCs:
     CIDR block —Classless Inter-Domain Routing. An internet protocol address allocation and route aggregation methodology. For more information, see Classless Inter-Domain Routing in Wikipedia. 
 
 2. EC2 (Instances)
-3. Security -
+> EC2 Instances are the virtual servers. These servers provide the Compute and storage that will be used to run your applications and are available in Linux and Windows Server configurations. 
 
-## Parts of a Wordpress Website
+3. Security
+>Using AWS, you will gain the control and confidence you need to securely run your business with the most flexible and secure cloud computing environment available today. As an AWS customer, you will benefit from AWS data centers and a network architected to protect your information, identities, applications, and devices. With AWS, you can improve your ability to meet core security and compliance requirements, such as data locality, protection, and confidentiality with our comprehensive services and features.
+
+>AWS allows you to automate manual security tasks so you can shift your focus to scaling and innovating your business. Plus, you pay only for the services that you use. All customers benefit from AWS being the only commercial cloud that has had its service offerings and associated supply chain vetted and accepted as secure enough for top-secret workloads.
+
+## Components of a WordPress Website
 
 Wordpress is a popular website management system and is used by millions of websites around the world. Wordpress consists of the following components
 1. Server
-This is the physical or virtual server
+>This is the physical or virtual server
 2. Web Server
-This is an application that servers HTTP requests. Popular web servers are Apache and Nginx
+>This is an application that servers HTTP requests. Popular web servers are Apache and Nginx
 3. Database
-The database is where content, configuration, and user information is stored.  Wordpress supports common database engines such as Mysql and MariaDB
+>The database is where content, configuration, and user information is stored.  Wordpress supports common database engines such as Mysql and MariaDB
 4. Content
-The content is what you are sharing to your viewers.  You create content through the Wordpress inferface or compatible tools, and that content is servered to visitors of your website by the web server.
+>The content is what you are sharing to your viewers.  You create content through the Wordpress inferface or compatible tools, and that content is servered to visitors of your website by the web server.
 5. DNS
-DNS is Domain Naming System and is used to map names to IP network addresses. 
+>DNS is Domain Naming System and is used to map names to IP network addresses. 
 6. Certificates (SSL/TLS)
-Certificates provide security for your website. It allows the use of Secure Sockets Layer (SSL) or Transport Layer Security (TLS) which encryptes the session between the vistor web browser and the webserver. It also provides assurances to your website vistors that your address and domain are legitmate.
+>Certificates provide security for your website. It allows the use of Secure Sockets Layer (SSL) or Transport Layer Security (TLS) which encryptes the session between the vistor web browser and the webserver. It also provides assurances to your website vistors that your address and domain are legitmate.
+
+---
 
 ## Migration
 
@@ -68,10 +77,14 @@ To migrate your  wordpress website, you need to extract a copy of the data store
 
 ### Preparing the destination
 
-Easy or manual?
+Before you migrate your files and data, you need to prepare the destination environment.  In this workshop, you will launch an EC2 instance and configure the Wordpress application. You can build this new instance manually that allows you to customize all aspects of the server and application configuration (the hard way) or you can use a pre-build Amazon Machine Image (AMI) from a partner that requires little configuration (the easy way).
 
-### Easy method
-Launch EC2 Instance → t2.micro, Bitnami AMI
+For this workshop, we will use "The Easy Way".
+
+
+### The Easy Way
+Launch an EC2 Instance → t2.micro, Bitnami AMI
+
 1. Go to the EC2 Console and launch a new instance
 
 ![EC2 Console](img/AWSEC2-1.png)
@@ -112,7 +125,7 @@ The public IP address of the webserver will be found in the instance details. Yo
 
 ![EC2](img/AWSEC2-10.png)
 
->### Manual manual method for Ubuntu, MySQL and Apache ***Advanced***
+>### The Hard Way for Ubuntu, MySQL and Apache ***Advanced***
 <details>
    <summary>Click to view the manual steps</summary>
 
@@ -170,13 +183,14 @@ Depending on your SSH client, you might encounter a warning about permissions on
 
 ![Bitnami Console](img/BitnamiConsole.png)
 
-12. Log into the Wordpress Console for the website
+12. Log into the Wordpress Console for the website using the IP address of the AWS instance. For example, 
+http://ipaddress/wp-login.php where **ipaddress** is the public IP address of the server which can be found in the details of the instance.
 
 ![WordPress Login](img/WordpressLogin.png)
 
 ![WordPress Console](img/WordpressAdminPortal.png)
 
-13. Once logged into the Wordpress console, you will need to install a plugin that will be used to import the data and files from the source website.  This plugin is called **All-In-One WP Migration** and you will install it using the file location.  Navigate the the menu on the left and expand the section **Plugins** and select **Add New** as show here:
+13. Once logged into the Wordpress console, you will need to install a WordPress plugin that will be used to import the data and files from the source website.  This plugin is called **All-In-One WP Migration** and you will install it using from the source file.  Navigate the the menu on the left and expand the section **Plugins** and select **Add New** as show here:
 
 ![WordPress Console](img/WordpressAddPlugin1.png)
 
@@ -185,43 +199,70 @@ Depending on your SSH client, you might encounter a warning about permissions on
 
 Use the following URL for the plugin: `https://github.com/onepagezen/all-in-one-wp-migration-unlimited/archive/master.zip`
 
-Once the plugin is installed, click on **Activate**
+Once the plugin is installed, click on **Activate** to use it in the WordPress Admin Portal.
 
 ![Plugin Install](img/Wordpress-Install-AllInOneWPMigration.png)
 
 
-
+14. Now that the plugin is activated, you will export the files and data from the **source** website. Don't close your browser window!
 
 
 ## Preparing the source
 
-To migrate your  wordpress website, you need to extract a copy of the data stored in the database and all files that are a part of the wordpress website.  Normally this would be complicated and involve many manual steps, but fortunately, there are plugins and tools that will assist with this.  For this workshop we will be using the "All In One WP Migration" Plugin to extract the database and files you will need to import into the new website
+To migrate your  wordpress website, you need to extract a copy of the data stored in the database and all files that are a part of the wordpress website.  Normally this would be complicated and involve many manual steps, but fortunately, there are plugins and tools that will assist with this.  For this workshop we will be using the **All-In-One WP Migration** Plugin to extract the database and files you will need to import into the new website
 
-Log into the website you want to migrate by logging into the Wordpress Admin portal.  This will typically be found at http://<yourwebsite/wp-admin
+1. To begin the exporting of the data and files from the **source** website, in a ***new browser window***, log into the website you want to migrate by logging into the Wordpress Admin portal.  This will typically be found at http://yourwebsite/wp-admin/
 Log in with a user that as admin level privileges.  
-For this workshop use the following information:
 
-Url: `http://http://142.47.107.210/wp-admin/`
-Login: `wordpress`
-Password: `AWSworkshop`
+***For this workshop use the following information:***
+
+Url: `http://142.47.107.210/wp-admin/`<p>
+Login: `wordpress`<p>
+Password: `AWSworkshop`<p>
 
 ![Wordpress Login](img/SourceWordpressLogin.png)
 
-Install All-in-One WP Migration
-https://github.com/onepagezen/all-in-one-wp-migration-unlimited/archive/master.zip
-Export the archive to your local computer
+This website already has the plugin installed. You will use this plugin to export the files and data into an archive that you will download to your local computer.
 
+On the left side of the Wordpress Admin Portal, you will see a section **All-In-One WP Migration**. This is where you will create the export archive. Click on **Export**
 
+![All-In-One](img/WordpressAllInOne-Export.png)
 
-## Migration
-Access wordpress admin
-Install All-in-One WP Migration plugin
-https://github.com/onepagezen/all-in-one-wp-migration-unlimited/archive/master.zip
-Import from the saved archive file
+Then click on **Export To** and select **File**
 
+![Export](img/ExportToFile.png)
 
-Update DNS records to new IP address
-Shutdown Source
+Save the archive by clicking on the Green Box and the archive will be saved to your local computer.
+
+![Export Complete](img/WordpressExportDownload.png)
+
+<p>
+
+## Migrate to the AWS Instance
+
+Now that the archive has been downloaded, you will import that archive into the new Wordpress site.  
+Switch back to the Admin Portal of the **New** website.
+
+In the Wordpress Admin Portal, select **All-In-One WP Migration** on the left side, and the click on **Import**
+
+![WordPress Import](img/WordpressImport.png)
+
+A status bar will display the progress of the archive import
+
+![Import Status](img/ImportStatus.png)
+
+Once the import completes, you will be notified that this import will over-write any existing data and Wordpress configuration. 
+
+## Clean Up
+
+At this point you now have a new Wordpress website running on an AWS Instance that is identical the original website.  There are a few remaining steps you will need to do to complete the migration.
+
+1. Validate that the website was imported correctly and that everything works as you expect. Adjust any Wordpress settings as appropriate.
+
+2. You will need to update the DNS information for your website to use the IP address of the new Wordpress instance running in AWS.
+
+3. Finally you can shutdown the server hosting the original website.
+
 
 ## 
 
