@@ -104,25 +104,29 @@ Launch EC2 Instance → t2.micro, Bitnami AMI
 
 ![EC2](img/AWSEC2-8.png)
 
-9. 
+9. You can view the details of your instance by selecting it in the AWS EC2 Console
 
 ![EC2](img/AWSEC2-9.png)
 
 
-### Manual manual method for Ubuntu, MySQL and Apache
+### Manual manual method for Ubuntu, MySQL and Apache ***Advanced***
 <details>
    <summary>Click to view the manual steps</summary>
 
-1. Launch EC2 Instance → t2.micro, choose Linux of choice (Ubuntu for example)
-2. Connect to server (ssh)
-3. Install mysql-server 
+1. Launch EC2 Instance → t2.micro, choose Linux of choice (Ubuntu for example). Follow the same steps as above, but select the desired version of Linux instead of the Bitnami AMI.
+
+2. Connect to server using SSH using your preferred SSH client.  You will use the keypair file that you selected or created when you launched the instance. Depending on your SSH client, you might encounter a warning about permissions on the keypair file.  
+
+![EC2](img/ssh-pem-permissions.png)
+
+3. Install `mysql-server`. For example, in Ubuntu, `apt-get` is used to install applications. 
 
 >>
 ```
 apt-get install mysql-server
 ```
 
-4. Create the database: 
+4. Create the database in using `mysql`. In this example the database created is **wordpress** and the user created is also **wordpress**.  The use is granted permissions to access and use the database.
 >>
 ```
 create database wordpress;
@@ -130,30 +134,37 @@ create user 'wordpress'@'localhost' identified by 'AWSworkshop';
 grant all privileges on *.* to 'wordpress'@'localhost';
 flush privileges;
 ```
-5. Download Wordpress to the server.
+5. Download the Wordpress application to the server and then extract the files. Next copy the files to your web server document root.  For example, the default with Apache2 will be `/var/www/html`
 >>
 ```
 wget https://wordpress.org/latest.tar.gz
 tar -xzvf latest.tar.gz
 cp wordpress/* /var/www/html
 ```
-6. configure wp-config.php
+6. Configure `wp-config.php` with the appropriate information for the database connection as well as ***secret keys*** used by Wordpress.  For more information on how to configure `wp-config.php`, read [https://wordpress.org/support/article/editing-wp-config-php/](https://wordpress.org/support/article/editing-wp-config-php/)
+
 ```
 nano /var/www/html/wp-config.php
 ```
 
-7. Run the Wordpress installer: `http://example.com/wp-admin/install.php`
+7. Run the Wordpress installer to complete the Wordpress installation: `http://example.com/wp-admin/install.php`
  
 </details>
 
 <p>
 
-### Preparing the source
+## Preparing the source
 
 To migrate your  wordpress website, you need to extract a copy of the data stored in the database and all files that are a part of the wordpress website.  Normally this would be complicated and involve many manual steps, but fortunately, there are plugins and tools that will assist with this.  For this workshop we will be using the "All In One WP Migration" Plugin to extract the database and files you will need to import into the new website
 
 Log into the website you want to migrate by logging into the Wordpress Admin portal.  This will typically be found at http://<yourwebsite/wp-admin
-Log in with a user that as admin level privileges
+Log in with a user that as admin level privileges.  
+For this workshop use the following information:
+Url: `http://http://142.47.107.210/wp-admin/`
+Login: `wordpress`
+Password: `AWSworkshop`
+
+
 
 Install All-in-One WP Migration
 https://github.com/onepagezen/all-in-one-wp-migration-unlimited/archive/master.zip
