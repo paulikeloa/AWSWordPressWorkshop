@@ -77,22 +77,42 @@ Launch EC2 Instance → t2.micro, Bitnami AMI
 ![EC2 Console](img/AWSEC2-1.png)
 
 2. Select an Amazon Machine Image (AMI) to use. Enter **wordpress** in the search box and select the AMI **WordPress Certified by Bitnami and Automattic**.
+
 ![EC2](img/AWSEC2-2.png)
 
 3. As this AMI is offered on AWS Marketplace, you are reminded of the hourly charges. In this example, WordPress is free, but many AMIs in AWS Marketplace have an hourly software charge in addition to the hourly instance charge.
+
 ![EC2](img/AWSEC2-3.png)
 
 4. Next select the instance type. For this workshop, select the **t2.micro** option. Then click on **Review and Launch**. This instance has 1 vcpu and 1G of memory, which is adequate for a development or test server.  For production, select a larger instance size appropriate for usage projections.
+
 ![EC2](img/AWSEC2-4.png)
 
-5. 
+5. You are presented a review of the launch configuration to allow you to verify you are launching what you intended.  Click on **Launch**.
+
 ![EC2](img/AWSEC2-5.png)
 
-6. 
+6. The last step before your instance is launched is to create or select a keypair that will be used to allow you to access the instance remotely using SSH.  Select **Create a new key pair** from the dropdown, and then enter a name for the keypair.  You then need to download the key file (.pem) to your local computer.
+
 ![EC2](img/AWSEC2-6.png)
+
+7. Your instance is now launching
+
+![EC2](img/AWSEC2-7.png)
+
+8. You can see the status of your instance. Click on the instance ID to see the details of your instance
+
+![EC2](img/AWSEC2-8.png)
+
+9. 
+
+![EC2](img/AWSEC2-9.png)
 
 
 ### Manual manual method for Ubuntu, MySQL and Apache
+<details>
+   <summary>Click to view the manual steps</summary>
+
 1. Launch EC2 Instance → t2.micro, choose Linux of choice (Ubuntu for example)
 2. Connect to server (ssh)
 3. Install mysql-server 
@@ -117,11 +137,16 @@ wget https://wordpress.org/latest.tar.gz
 tar -xzvf latest.tar.gz
 cp wordpress/* /var/www/html
 ```
-6. configure wp-config.php```
+6. configure wp-config.php
+```
+nano /var/www/html/wp-config.php
+```
 
 7. Run the Wordpress installer: `http://example.com/wp-admin/install.php`
  
+</details>
 
+<p>
 
 ### Preparing the source
 
