@@ -1,6 +1,6 @@
 
-# Wordpress Migration Workshop
-In this workshop, you will learn how to migrate a typical wordpress website to AWS. This workshop expects that you have some level of AWS proficency as it is not an introduction to AWS services.
+# WordPress Migration Workshop
+In this workshop, you will learn how to migrate a typical WordPress website to AWS. This workshop expects that you have some level of AWS proficency as it is not an introduction to AWS services.
 
 
 ## Intro to AWS
@@ -50,15 +50,15 @@ Amazon VPC is the networking layer for Amazon EC2.
 
 ## Components of a WordPress Website
 
-Wordpress is a popular website management system and is used by millions of websites around the world. Wordpress consists of the following components
+WordPress is a popular website management system and is used by millions of websites around the world. WordPress consists of the following components
 1. Server
 >This is the physical or virtual server
 2. Web Server
 >This is an application that servers HTTP requests. Popular web servers are Apache and Nginx
 3. Database
->The database is where content, configuration, and user information is stored.  Wordpress supports common database engines such as Mysql and MariaDB
+>The database is where content, configuration, and user information is stored.  WordPress supports common database engines such as Mysql and MariaDB
 4. Content
->The content is what you are sharing to your viewers.  You create content through the Wordpress inferface or compatible tools, and that content is servered to visitors of your website by the web server.
+>The content is what you are sharing to your viewers.  You create content through the WordPress inferface or compatible tools, and that content is servered to visitors of your website by the web server.
 5. DNS
 >DNS is Domain Naming System and is used to map names to IP network addresses. 
 6. Certificates (SSL/TLS)
@@ -68,16 +68,16 @@ Wordpress is a popular website management system and is used by millions of webs
 
 ## Migration
 
-Now that you have a basic understanding of Wordpress and AWS core services, you will practice a migration of a wordpress website to an EC2 Instance on AWS.
+Now that you have a basic understanding of WordPress and AWS core services, you will practice a migration of a WordPress website to an EC2 Instance on AWS.
 
-This workshop won't focus on installing and building a wordpress website. Instead it will use the Bitnami Wordpress image to launch the destination webiste.
+This workshop won't focus on installing and building a WordPress website. Instead it will use the Bitnami WordPress image to launch the destination webiste.
 
-To migrate your  wordpress website, you need to extract a copy of the data stored in the database and all files that are a part of the wordpress website.  Normally this would be complicated and involve many manual steps, but fortunately, there are plugins and tools that will assist with this.  For this workshop we will be using the "All In One WP Migration" Plugin to extract the database and files you will need to import into the new website
+To migrate your  WordPress website, you need to extract a copy of the data stored in the database and all files that are a part of the WordPress website.  Normally this would be complicated and involve many manual steps, but fortunately, there are plugins and tools that will assist with this.  For this workshop we will be using the "All In One WP Migration" Plugin to extract the database and files you will need to import into the new website
 
 
 ### Preparing the destination
 
-Before you migrate your files and data, you need to prepare the destination environment.  In this workshop, you will launch an EC2 instance and configure the Wordpress application. You can build this new instance manually that allows you to customize all aspects of the server and application configuration (the hard way) or you can use a pre-build Amazon Machine Image (AMI) from a partner that requires little configuration (the easy way).
+Before you migrate your files and data, you need to prepare the destination environment.  In this workshop, you will launch an EC2 instance and configure the WordPress application. You can build this new instance manually that allows you to customize all aspects of the server and application configuration (the hard way) or you can use a pre-build Amazon Machine Image (AMI) from a partner that requires little configuration (the easy way).
 
 For this workshop, we will use "The Easy Way".
 
@@ -89,7 +89,7 @@ Launch an EC2 Instance → t2.micro, Bitnami AMI
 
 ![EC2 Console](img/AWSEC2-1.png)
 
-2. Select an Amazon Machine Image (AMI) to use. Enter **wordpress** in the search box and select the AMI **WordPress Certified by Bitnami and Automattic**.
+2. Select an Amazon Machine Image (AMI) to use. Enter **WordPress** in the search box and select the AMI **WordPress Certified by Bitnami and Automattic**.
 
 ![EC2](img/AWSEC2-2.png)
 
@@ -150,20 +150,20 @@ create user 'wordpress'@'localhost' identified by 'AWSworkshop';
 grant all privileges on *.* to 'wordpress'@'localhost';
 flush privileges;
 ```
-5. Download the Wordpress application to the server and then extract the files. Next copy the files to your web server document root.  For example, the default with Apache2 will be `/var/www/html`
+5. Download the WordPress application to the server and then extract the files. Next copy the files to your web server document root.  For example, the default with Apache2 will be `/var/www/html`
 >>
 ```
-wget https://wordpress.org/latest.tar.gz
+wget https://WordPress.org/latest.tar.gz
 tar -xzvf latest.tar.gz
 cp wordpress/* /var/www/html
 ```
-6. Configure `wp-config.php` with the appropriate information for the database connection as well as ***secret keys*** used by Wordpress.  For more information on how to configure `wp-config.php`, read [https://wordpress.org/support/article/editing-wp-config-php/](https://wordpress.org/support/article/editing-wp-config-php/)
+6. Configure `wp-config.php` with the appropriate information for the database connection as well as ***secret keys*** used by WordPress.  For more information on how to configure `wp-config.php`, read [https://wordpress.org/support/article/editing-wp-config-php/](https://wordpress.org/support/article/editing-wp-config-php/)
 
 ```
 nano /var/www/html/wp-config.php
 ```
 
-7. Run the Wordpress installer to complete the Wordpress installation: `http://example.com/wp-admin/install.php`
+7. Run the WordPress installer to complete the WordPress installation: `http://example.com/wp-admin/install.php`
  
 </details>
 
@@ -179,18 +179,18 @@ Depending on your SSH client, you might encounter a warning about permissions on
 
 ![EC2](img/ssh-pem-permissions.png)
 
-11. Now that you are logged into the instance, you can view the wordpress credentials. These credentials are found in the file `bitnami_credentials`
+11. Now that you are logged into the instance, you can view the WordPress credentials. These credentials are found in the file `bitnami_credentials`
 
 ![Bitnami Console](img/BitnamiConsole.png)
 
-12. Log into the Wordpress Console for the website using the IP address of the AWS instance. For example, 
+12. Log into the WordPress Console for the website using the IP address of the AWS instance. For example, 
 http://ipaddress/wp-login.php where **ipaddress** is the public IP address of the server which can be found in the details of the instance.
 
 ![WordPress Login](img/WordpressLogin.png)
 
 ![WordPress Console](img/WordpressAdminPortal.png)
 
-13. Once logged into the Wordpress console, you will need to install a WordPress plugin that will be used to import the data and files from the source website.  This plugin is called **All-In-One WP Migration** and you will install it using from the source file.  Navigate the the menu on the left and expand the section **Plugins** and select **Add New** as show here:
+13. Once logged into the WordPress console, you will need to install a WordPress plugin that will be used to import the data and files from the source website.  This plugin is called **All-In-One WP Migration** and you will install it using from the source file.  Navigate the the menu on the left and expand the section **Plugins** and select **Add New** as show here:
 
 ![WordPress Console](img/WordpressAddPlugin1.png)
 
@@ -209,22 +209,22 @@ Once the plugin is installed, click on **Activate** to use it in the WordPress A
 
 ## Preparing the source
 
-To migrate your  wordpress website, you need to extract a copy of the data stored in the database and all files that are a part of the wordpress website.  Normally this would be complicated and involve many manual steps, but fortunately, there are plugins and tools that will assist with this.  For this workshop we will be using the **All-In-One WP Migration** Plugin to extract the database and files you will need to import into the new website
+To migrate your  WordPress website, you need to extract a copy of the data stored in the database and all files that are a part of the WordPress website.  Normally this would be complicated and involve many manual steps, but fortunately, there are plugins and tools that will assist with this.  For this workshop we will be using the **All-In-One WP Migration** Plugin to extract the database and files you will need to import into the new website
 
-1. To begin the exporting of the data and files from the **source** website, in a ***new browser window***, log into the website you want to migrate by logging into the Wordpress Admin portal.  This will typically be found at http://yourwebsite/wp-admin/
-Log in with a user that as admin level privileges.  
+1. To begin the exporting of the data and files from the **source** website, in a ***new browser window***, log into the website you want to migrate by logging into the WordPress Admin portal.  This will typically be found at http://yourwebsite/wp-admin/
+Log in with a user that has admin level privileges.  
 
 ***For this workshop use the following information:***
 
-Url: `http://142.47.107.210/wp-admin/`<p>
-Login: `wordpress`<p>
-Password: `AWSworkshop`<p>
+>Url: `http://142.47.107.210/wp-admin/`<p>
+>Login: `wordpress`<p>
+>Password: `AWSworkshop`<p>
 
 ![Wordpress Login](img/SourceWordpressLogin.png)
 
 This website already has the plugin installed. You will use this plugin to export the files and data into an archive that you will download to your local computer.
 
-On the left side of the Wordpress Admin Portal, you will see a section **All-In-One WP Migration**. This is where you will create the export archive. Click on **Export**
+On the left side of the WordPress Admin Portal, you will see a section **All-In-One WP Migration**. This is where you will create the export archive. Click on **Export**
 
 ![All-In-One](img/WordpressAllInOne-Export.png)
 
@@ -240,10 +240,10 @@ Save the archive by clicking on the Green Box and the archive will be saved to y
 
 ## Migrate to the AWS Instance
 
-Now that the archive has been downloaded, you will import that archive into the new Wordpress site.  
+Now that the archive has been downloaded, you will import that archive into the new WordPress site.  
 Switch back to the Admin Portal of the **New** website.
 
-In the Wordpress Admin Portal, select **All-In-One WP Migration** on the left side, and the click on **Import**
+In the WordPress Admin Portal, select **All-In-One WP Migration** on the left side, and the click on **Import**
 
 ![WordPress Import](img/WordpressImport.png)
 
@@ -251,15 +251,15 @@ A status bar will display the progress of the archive import
 
 ![Import Status](img/ImportStatus.png)
 
-Once the import completes, you will be notified that this import will over-write any existing data and Wordpress configuration. 
+Once the import completes, you will be notified that this import will over-write any existing data and WordPress configuration. 
 
 ## Clean Up
 
-At this point you now have a new Wordpress website running on an AWS Instance that is identical the original website.  There are a few remaining steps you will need to do to complete the migration.
+At this point you now have a new WordPress website running on an AWS Instance that is identical the original website.  There are a few remaining steps you will need to do to complete the migration.
 
-1. Validate that the website was imported correctly and that everything works as you expect. Adjust any Wordpress settings as appropriate.
+1. Validate that the website was imported correctly and that everything works as you expect. Adjust any WordPress settings as appropriate.
 
-2. You will need to update the DNS information for your website to use the IP address of the new Wordpress instance running in AWS.
+2. You will need to update the DNS information for your website to use the IP address of the new WordPress instance running in AWS.
 
 3. Finally you can shutdown the server hosting the original website.
 
