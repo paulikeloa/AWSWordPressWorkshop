@@ -140,6 +140,11 @@ Then click on **Save Rules**
 ![EC2](img/AddInboundRule.png)
 
 <p>
+
+>
+Download the All-In-One WP Migration plug that we will be using in the next steps.  Copy the following into a new web browser window:
+`https://github.com/onepagezen/all-in-one-wp-migration-unlimited/archive/master.zip` which will save the file into your Downloads folder on your computer.
+
 <p>
 
 ---
@@ -191,7 +196,10 @@ nano /var/www/html/wp-config.php
 <p>
 
 12. Log into the WordPress Console for the website using the IP address of the AWS instance. For example, 
-http://ipaddress/wp-login.php where **ipaddress** is the public IP address of the server which can be found in the details of the instance.
+http://ipaddress/wp-login.php where **ipaddress** is the public IP address of the server which can be found in the details of the instance. Use the following credentials to log into the WordPress Admin Portal:
+
+>Login: `wordpress`<p>
+>Password: `AWSworkshop`<p>
 
 ![WordPress Login](img/WordpressLogin.png)
 
