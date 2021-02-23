@@ -160,11 +160,12 @@ To migrate your  wordpress website, you need to extract a copy of the data store
 Log into the website you want to migrate by logging into the Wordpress Admin portal.  This will typically be found at http://<yourwebsite/wp-admin
 Log in with a user that as admin level privileges.  
 For this workshop use the following information:
+
 Url: `http://http://142.47.107.210/wp-admin/`
 Login: `wordpress`
 Password: `AWSworkshop`
 
-
+![Wordpress Login](img/SourceWordpressLogin.png)
 
 Install All-in-One WP Migration
 https://github.com/onepagezen/all-in-one-wp-migration-unlimited/archive/master.zip
