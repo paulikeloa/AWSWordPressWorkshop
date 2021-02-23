@@ -83,19 +83,16 @@ For this workshop, we will use "The Easy Way".
 
 
 ### The Easy Way
-Launch an EC2 Instance → t2.micro, Bitnami AMI
+Launch an EC2 Instance → t2.micro, Workshop AMI
 
 1. Go to the EC2 Console and launch a new instance
 
 ![EC2 Console](img/AWSEC2-1.png)
 
-2. Select an Amazon Machine Image (AMI) to use. Enter **WordPress** in the search box and select the AMI **WordPress Certified by Bitnami and Automattic**.
+2. Select an Amazon Machine Image (AMI) to use. Enter **ami-00fc61ca97c54fe15** in the search box and select the AMI **AWSWordpressWorkshop - ami-00fc61ca97c54fe15**.
 
-![EC2](img/AWSEC2-2.png)
+![EC2](img/WorkshopAMI.png)
 
-3. As this AMI is offered on AWS Marketplace, you are reminded of the hourly charges. In this example, WordPress is free, but many AMIs in AWS Marketplace have an hourly software charge in addition to the hourly instance charge.
-
-![EC2](img/AWSEC2-3.png)
 
 4. Next select the instance type. For this workshop, select the **t2.micro** option. Then click on **Review and Launch**. This instance has 1 vcpu and 1G of memory, which is adequate for a development or test server.  For production, select a larger instance size appropriate for usage projections.
 
@@ -103,7 +100,7 @@ Launch an EC2 Instance → t2.micro, Bitnami AMI
 
 5. You are presented a review of the launch configuration to allow you to verify you are launching what you intended.  Click on **Launch**.
 
-![EC2](img/AWSEC2-5.png)
+![EC2](img/WorkshopAMILaunch.png)
 
 6. The last step before your instance is launched is to create or select a keypair that will be used to allow you to access the instance remotely using SSH.  Select **Create a new key pair** from the dropdown, and then enter a name for the keypair.  You then need to download the key file (.pem) to your local computer.
 
@@ -125,6 +122,27 @@ The public IP address of the webserver will be found in the instance details. Yo
 
 ![EC2](img/AWSEC2-10.png)
 
+10. Before you can access the WordPress website that is already installed on the instance, you need to update the ***SecurityGroup*** for the instance to allow access to HTTP (port 80). Under the instance details, there is a ***Security*** tab. Click on that tab to see the Security Group that was created when the instance was launched.
+
+![EC2](img/InstanceSecurityTab.png)
+
+Click on the security group and add a new firewall rule. Click on **Edit Inbound Rules**
+
+![EC2](img/EditSecurityGroup.png)
+
+Next, click on **Add Rule** and add the following:
+
+`Type: HTTP`<p>
+`Source: Anywhere`<p>
+
+Then click on **Save Rules**
+
+![EC2](img/AddInboundRule.png)
+
+<p>
+<p>
+
+---
 >### The Hard Way for Ubuntu, MySQL and Apache ***Advanced***
 <details>
    <summary>Click to view the manual steps</summary>
@@ -169,19 +187,8 @@ nano /var/www/html/wp-config.php
 
 <p>
 
-10. Log into the instance
-
-Connect to server using the public IP address with your preferred SSH client.  You will use the keypair file that you selected or created when you launched the instance. Depending on your SSH client, you might encounter a warning about permissions on the keypair file.
-
-![Bitnami Console](img/BitnamiLogin.png)
-
-Depending on your SSH client, you might encounter a warning about permissions on the keypair file.  
-
-![EC2](img/ssh-pem-permissions.png)
-
-11. Now that you are logged into the instance, you can view the WordPress credentials. These credentials are found in the file `bitnami_credentials`
-
-![Bitnami Console](img/BitnamiConsole.png)
+---
+<p>
 
 12. Log into the WordPress Console for the website using the IP address of the AWS instance. For example, 
 http://ipaddress/wp-login.php where **ipaddress** is the public IP address of the server which can be found in the details of the instance.
