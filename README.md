@@ -108,8 +108,11 @@ Launch EC2 Instance → t2.micro, Bitnami AMI
 
 ![EC2](img/AWSEC2-9.png)
 
+The public IP address of the webserver will be found in the instance details. You will need this information to log into the instance.
 
-### Manual manual method for Ubuntu, MySQL and Apache ***Advanced***
+![EC2](img/AWSEC2-10.png)
+
+>### Manual manual method for Ubuntu, MySQL and Apache ***Advanced***
 <details>
    <summary>Click to view the manual steps</summary>
 
@@ -152,6 +155,23 @@ nano /var/www/html/wp-config.php
 </details>
 
 <p>
+
+10. Log into the instance
+Connect to server using SSH using your preferred SSH client.  You will use the keypair file that you selected or created when you launched the instance. 
+
+![Bitnami Console](img/BitnamiLogin.png)
+
+Depending on your SSH client, you might encounter a warning about permissions on the keypair file.  
+
+![EC2](img/ssh-pem-permissions.png)
+
+11. The wordpress user credentials are found in the file `bitnami_credentials`
+
+![Bitnami Console](img/BitnamiConsole.png)
+
+12. Log
+
+
 
 ## Preparing the source
 
