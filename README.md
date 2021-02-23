@@ -72,35 +72,43 @@ Easy or manual?
 
 ### Easy method
 Launch EC2 Instance → t2.micro, Bitnami AMI
+1. Go to the EC2 Console
+![EC2 Console](images/AWS-EC2-1.png)
+2. 
+3. 
+4. 
+5. 
+6. 
 
-
-### Manual manual method
+### Manual manual method for Ubuntu, MySQL and Apache
 1. Launch EC2 Instance → t2.micro, choose Linux of choice (Ubuntu for example)
 2. Connect to server (ssh)
 3. Install mysql-server 
 
->`
+>>
+```
 apt-get install mysql-server
-`
+```
 
 4. Create the database: 
->
-```create database wordpress;
+>>
+```
+create database wordpress;
 create user 'wordpress'@'localhost' identified by 'AWSworkshop';
 grant all privileges on *.* to 'wordpress'@'localhost';
 flush privileges;
 ```
-5. Download Wordpress to the server
->```wget https://wordpress.org/latest.tar.gz
-
+5. Download Wordpress to the server.
+>>
+```
+wget https://wordpress.org/latest.tar.gz
 tar -xzvf latest.tar.gz
-
 cp wordpress/* /var/www/html
+```
+6. configure wp-config.php```
 
-configure wp-config.php```
-
-6. Install wp: `http://example.com/wp-admin/install.php`
- hps://wordpress.org/latest.tar.gz
+7. Run the Wordpress installer: `http://example.com/wp-admin/install.php`
+ 
 
 
 ### Preparing the source
