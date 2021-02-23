@@ -78,20 +78,28 @@ Launch EC2 Instance → t2.micro, Bitnami AMI
 1. Launch EC2 Instance → t2.micro, choose Linux of choice (Ubuntu for example)
 2. Connect to server (ssh)
 3. Install mysql-server 
-`
+
+>`
 apt-get install mysql-server
 `
-Create database: 
-6. create database wordpress;
-7. create user 'wordpress'@'localhost' identified by 'AWSworkshop';
+
+4. Create the database: 
+>
+```create database wordpress;
+create user 'wordpress'@'localhost' identified by 'AWSworkshop';
 grant all privileges on *.* to 'wordpress'@'localhost';
 flush privileges;
-Download Wordpress to the server
-wget https://wordpress.org/latest.tar.gz
+```
+5. Download Wordpress to the server
+>```wget https://wordpress.org/latest.tar.gz
+
 tar -xzvf latest.tar.gz
+
 cp wordpress/* /var/www/html
-configure wp-config.php
-Install wp: `http://example.com/wp-admin/install.php`
+
+configure wp-config.php```
+
+6. Install wp: `http://example.com/wp-admin/install.php`
  hps://wordpress.org/latest.tar.gz
 
 
