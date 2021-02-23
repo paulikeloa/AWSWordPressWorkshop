@@ -72,13 +72,25 @@ Easy or manual?
 
 ### Easy method
 Launch EC2 Instance → t2.micro, Bitnami AMI
-1. Go to the EC2 Console
-![EC2 Console](img/AWS-EC2-1.png)
-2. 
-3. 
-4. 
+1. Go to the EC2 Console and launch a new instance
+
+![EC2 Console](img/AWSEC2-1.png)
+
+2. Select an Amazon Machine Image (AMI) to use. Enter **wordpress** in the search box and select the AMI **WordPress Certified by Bitnami and Automattic**.
+![EC2](img/AWSEC2-2.png)
+
+3. As this AMI is offered on AWS Marketplace, you are reminded of the hourly charges. In this example, WordPress is free, but many AMIs in AWS Marketplace have an hourly software charge in addition to the hourly instance charge.
+![EC2](img/AWSEC2-3.png)
+
+4. Next select the instance type. For this workshop, select the **t2.micro** option. Then click on **Review and Launch**. This instance has 1 vcpu and 1G of memory, which is adequate for a development or test server.  For production, select a larger instance size appropriate for usage projections.
+![EC2](img/AWSEC2-4.png)
+
 5. 
+![EC2](img/AWSEC2-5.png)
+
 6. 
+![EC2](img/AWSEC2-6.png)
+
 
 ### Manual manual method for Ubuntu, MySQL and Apache
 1. Launch EC2 Instance → t2.micro, choose Linux of choice (Ubuntu for example)
