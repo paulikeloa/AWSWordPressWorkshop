@@ -118,7 +118,7 @@ The public IP address of the webserver will be found in the instance details. Yo
 
 1. Launch EC2 Instance → t2.micro, choose Linux of choice (Ubuntu for example). Follow the same steps as above, but select the desired version of Linux instead of the Bitnami AMI.
 
-2. Connect to server using SSH using your preferred SSH client.  You will use the keypair file that you selected or created when you launched the instance. Depending on your SSH client, you might encounter a warning about permissions on the keypair file.  
+2. Connect to server using the public IP address with your preferred SSH client.  You will use the keypair file that you selected or created when you launched the instance. Depending on your SSH client, you might encounter a warning about permissions on the keypair file.  
 
 ![EC2](img/ssh-pem-permissions.png)
 
@@ -157,7 +157,8 @@ nano /var/www/html/wp-config.php
 <p>
 
 10. Log into the instance
-Connect to server using SSH using your preferred SSH client.  You will use the keypair file that you selected or created when you launched the instance. 
+
+Connect to server using the public IP address with your preferred SSH client.  You will use the keypair file that you selected or created when you launched the instance. Depending on your SSH client, you might encounter a warning about permissions on the keypair file.
 
 ![Bitnami Console](img/BitnamiLogin.png)
 
@@ -165,11 +166,30 @@ Depending on your SSH client, you might encounter a warning about permissions on
 
 ![EC2](img/ssh-pem-permissions.png)
 
-11. The wordpress user credentials are found in the file `bitnami_credentials`
+11. Now that you are logged into the instance, you can view the wordpress credentials. These credentials are found in the file `bitnami_credentials`
 
 ![Bitnami Console](img/BitnamiConsole.png)
 
-12. Log
+12. Log into the Wordpress Console for the website
+
+![WordPress Login](img/WordpressLogin.png)
+
+![WordPress Console](img/WordpressAdminPortal.png)
+
+13. Once logged into the Wordpress console, you will need to install a plugin that will be used to import the data and files from the source website.  This plugin is called **All-In-One WP Migration** and you will install it using the file location.  Navigate the the menu on the left and expand the section **Plugins** and select **Add New** as show here:
+
+![WordPress Console](img/WordpressAddPlugin1.png)
+
+![WordPress Add Plugin](img/WordpressAddNewPlugin.png)
+
+
+Use the following URL for the plugin: `https://github.com/onepagezen/all-in-one-wp-migration-unlimited/archive/master.zip`
+
+Once the plugin is installed, click on **Activate**
+
+![Plugin Install](img/Wordpress-Install-AllInOneWPMigration.png)
+
+
 
 
 
