@@ -14,6 +14,12 @@ A migration is when you move an workload or application and data from one enviro
 
 Migrations to AWS include moving any workload from an on-premises environment, hosting facility, or other public cloud. AWS is working with thousands of organizations to migrate workloads such as applications, websites, databases, storage, physical or virtual servers, or entire data centers.
 
+There are many reasons you may be considering a migration:
+1. Hardware refresh - you have aging hardware that you need to purchase. Leveraging server instances in AWS provides for increased flexibility and agility.
+2. Costs for on-premises operations - Operating a production data center has many costs in addition to the servers, such as network equipment, power and cooling, and personal to manage and work in the data center. And to ensure fail-over or disaster recovery, your costs could increase 2-fold or more.
+3. Datacenter retirement - Operating a data center isn't a core-competency of your business and you want to focus on your products and services that beneift your customers.
+4. Integration into other services - you want to explore other technologies such as Data and Analytics or Machine Learnling.
+
 
 ## Introduction to EC2
 
