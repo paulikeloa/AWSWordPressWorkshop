@@ -278,14 +278,27 @@ Once the import completes, you will be notified that this import will over-write
 
 At this point you now have a new WordPress website running on an AWS Instance that is identical the original website.  There are a few remaining steps you will need to do to complete the migration.
 
-1. Validate that the website was imported correctly and that everything works as you expect. Adjust any WordPress settings as appropriate.
+1. Validate that the website was imported correctly and that everything works as you expect. Adjust any WordPress settings as appropriate. *See Troubleshooting*
 
 2. You will need to update the DNS information for your website to use the IP address of the new WordPress instance running in AWS.
 
 3. Finally you can shutdown the server hosting the original website.
 
 
-## 
+## Troubleshooting
+
+If you discover after the migration that your website re-directs you to your old address, verify your WordPress Options:
+1. Ensure the wp_option **siteurl** is set correctly.  Connect to the wordpress database and execute a query for the option:  For Mysql/MariaSB, for example, would be similiar to this:
+
+```
+MariaDB [wordpress]> select * from wp_options where option_name = 'siteurl';
++-----------+-------------+----------------------+----------+
+| option_id | option_name | option_value         | autoload |
++-----------+-------------+----------------------+----------+
+|         1 | siteurl     | http://yourip-or-dns | yes      |
++-----------+-------------+----------------------+----------+
+1 row in set (0.00 sec)
+```
 
 ## 
 
