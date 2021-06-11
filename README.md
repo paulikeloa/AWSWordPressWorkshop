@@ -201,6 +201,21 @@ nano /var/www/html/wp-config.php
 ---
 <p>
 
+*** Temporary Step ***
+
+Due to how Wordpress works, when you use the AMI to launch an instance, you will have to update the ***siteurl*** setting in the WordPress database.
+
+1. Copy IP of your instance from the EC2 console.
+2. SSH into the instance using **ec2-user@<your-instance-ip>**
+```
+ssh -i instance-key.pem ec2-user@ip.address
+```
+3. Update the datebase with your IP for the option **siteurl**
+
+<p>
+
+
+
 12. Log into the WordPress Console for the website using the IP address of the AWS instance. For example, 
 http://ipaddress/wp-login.php where **ipaddress** is the public IP address of the server which can be found in the details of the instance. Use the following credentials to log into the WordPress Admin Portal:
 
